@@ -1,0 +1,200 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter1.tex
+%% NOVA thesis document file
+%%
+%% Chapter with introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\typeout{NT FILE exploratory_studies.tex}%
+
+
+
+\chapter{Exploratory Studies}
+\label{cha:exploratory_studies}
+
+\prependtographicspath{{Chapters/Figures/Covers/}}
+
+% epigraph configuration
+\epigraphfontsize{\small\itshape}
+\setlength\epigraphwidth{12.5cm}
+\setlength\epigraphrule{0pt}
+
+To %test
+analyze the usability of LLMs to elicit ethical requirements, we first used the ChatGPT browser application with prompt engineering. We compared our results with another approach to elicit ethical requirements, ObRE \cite{guizzardi2023ontology}. The authors tested the ObRE results with a driverless car user case by the AutoCar Project, a project carried out by Ankaya University that also focused on autonomous cars, which published their requirements report online\footnote{AutoCar project: https://acp317315180.wordpress.com/autonomous-car-software-requirement-specification-report/}. Therefore, we opted to use the same software concept to compare both results.
+
+We started with a simple exploratory study that involved prompting chatGPT to create personas that subsequently would discuss the software functionality and ethical requirements, facilitated by ECCOLA cards, resulting in ethical user stories specifications. The ECCOLA method \cite{VAKKURI2021111067} organized requirements by card themes, while the ObRE method, derived from an Ontology, produced specific functional and behavior requirements like driverless cars stopping at red lights. The exploratory study's approach yielded generic system behavior requirements, such as prioritizing human safety over automation. Some requirements were outside the software implementation scope, like using multiple sensors to reduce bias. Although preliminary, the exploratory study suggests potential for refinement and improvement, with results possibly influenced by prompt engineering. 
+
+We performed another exploratory study that was the basis of our approach, which is described next.
+
+\section{%A LLM based systematic approach for elciting ethical requirements 
+A  Systematic %elaborated 
+Exploratory Study}
+In this exploratory study, we followed %try to simulate 
+
+a set of steps using the ChatGPT browser application.
+
+The steps for this exploratory study were the following:
+\begin{itemize}
+\item We started by prompting the system to generate personas that could be the target users of the software product and a description of the AutoCar project.
+
+\item We supplied the %paper of the 
+ECCOLA's paper and asked the LLM to learn how to use it.
+
+\item We prompted it to assume the role of the personas and specified that the personas should read the software idea and have a discussion to understand how the software works in depth while adding a description of the AutoCar project.
+
+\item We prompted the personas to define the sprints required to develop the software product.
+
+\item We input %inputted 
+a JSON file with the ECCOLA cards data and asked the personas to define the relevant ECCOLA cards for each sprint while following the ECCOLA method. 
+
+\item We prompted the personas to use the ECCOLA method and to ask themselves and each other the questions present in the ECCOLA cards chosen for each sprint so that they could have a discussion to elicit ethical requirements for the software product. It was specified that each suggestion and idea should not be immediately accepted and that the personas should submit their conclusions through tests and questionnaires to improve their suggestions.
+
+\item Lastly, we prompted it to create a specification of Ethical User Stories to be implemented during the development stage.
+\end{itemize}
+
+In this exploratory study, our requirements encompass more features, such as a virtual driving assistant ("The virtual assistant shall allow users to override its recommendations unless immediate safety risks require autonomous intervention"), or emergency vehicle detection ("The system shall use multi-sensor verification before reacting to emergency vehicles and communicate its response to surrounding traffic").
+Consequently, it generated several EUSs, following the Agile format: "As a [type of user], I want [goal], so that [reason/value]". Each user story is tied to a specific ethical requirement; therefore when compared with the earlier examples the system generated the following EUSs respectively: "As a driver, I want to override assistant suggestions unless safety is at risk, so that I maintain agency"; and "As a user, I want the system to detect emergency vehicles using multiple sensors, so that false triggers are reduced".
+
+
+This exploratory study generated six different personas for a software product user. Each of these personas contributed with ideas regarding their perspective, like a person with mobility challenges which resulted in requirements such as "The system shall support accessibility features for individuals with mobility impairments, such as voice control and haptic feedback", which resulted in the following EUS "As a mobility-impaired user, I want to interact with the system using voice and haptic feedback, so that I can use the vehicle safely without relying on visual cues". The persona of % or
+an elderly retiree with reduced reaction time and vision issues at night %, this persona 
+helped generate requirements like "The system shall provide multi-level feedback on lane detection, including visual, audio, and haptic cues for accessibility" translating into an EUS "As a user, I want to receive lane-related feedback through visual, audio, and haptic cues, so that I am aware of lane behavior regardless of ability".
+
+
+The authors of the ObRE's approach gathered requirements with a stronger emphasis on how the car should behave in certain situations, while our approach was centered around how the system should behave and the features that the system should have. This has the advantage of showcasing possible latent ethical requirements.
+
+
+Our findings encompassed 41 ethical requirements and ethical user stories in total, in contrast with the previous exploratory study where we elicited 34 ethical requirements.
+Our results encompass a wider range of how the system should operate, while the ObRE results emphasize how the car should operate in a smaller scope.
+
+In %Box \ref{box:personas_dialog}, 
+the box below, the personas thoroughly discuss the ethical requirements for Sprint 3, where the theme is object recognition and collision avoidance.
+
+\begin{tcolorbox}
+  [breakable, colback=black!5!white,colframe=black!50!white, title={Sprint 3: Object Recognition \& Collision Avoidance - Ethical Discussion}]
+  
+  \textbf{Participants:}
+  
+  \begin{itemize}
+      \item Emily Carter (Tech-Savvy Business Professional)
+      \item Robert Harris (Elderly Retiree)
+      \item Lisa Nguyen (Parent of Two Young Children)
+      \item Ahmed Patel (Long-Haul Truck Driver)
+      \item Mia Rodríguez (Ride-Share Driver)
+      \item David Thompson (Person with Mobility Challenges)
+  \end{itemize}
+  
+  \textbf{Discussion: Human Oversight (\#11)}
+  
+  \begin{itemize}
+      \item \textbf{Emily}: "How much control should humans have when it comes to object recognition and emergency braking?"
+      \item \textbf{Ahmed}: "If an object is detected, should the system always take over, or should it ask the driver first?"
+      \item \textbf{Lisa}: "There’s no time for that in emergencies! If a child runs into the street, the system should react instantly."
+      \item \textbf{Robert}: "But what if it misidentifies an object? I don’t want the car slamming on the brakes for a plastic bag blowing in the wind."
+      \item \textbf{Mia}: "We need a balance—automatic braking for clear dangers but human intervention options for uncertain cases."
+  \end{itemize}
+  
+  \textbf{Test:} Each persona describes a false positive and false negative scenario. The group debates how the system should handle them.
+  
+  \textbf{Revised Conclusion:}
+  \begin{itemize}
+      \item The system must have multiple confidence thresholds for object detection:
+      \begin{itemize}
+          \item High certainty $\rightarrow$ Immediate braking.
+          \item Medium certainty $\rightarrow$ Warning to driver + reduced speed.
+          \item Low certainty $\rightarrow$ Monitoring without action.
+      \end{itemize}
+      \item \textbf{Ethical Requirement:} The system shall categorize objects with confidence levels and trigger appropriate responses based on risk level.
+  \end{itemize}
+  
+  \vspace{0.5em}
+  \textbf{Discussion: System Safety (\#13)}
+  
+  \begin{itemize}
+      \item \textbf{Emily}: "What if the car needs to choose between hitting an object or swerving?"
+      \item \textbf{Robert}: "Isn’t this the classic 'trolley problem'?"
+      \item \textbf{Lisa}: "The car should always prioritize human safety over property damage."
+      \item \textbf{Ahmed}: "But what if swerving puts another driver at risk? Should it hit the obstacle instead?"
+      \item \textbf{David}: "How does it decide who to protect? Are we okay with it prioritizing passengers over pedestrians?"
+      \item \textbf{Mia}: "We need fixed ethical rules, not AI making moral judgments on the fly."
+  \end{itemize}
+  
+  \textbf{Test:} Each persona ranks priorities for the system (passenger safety, pedestrian safety, property protection). The group debates until they agree.
+  
+  \textbf{Revised Conclusion:}
+  \begin{itemize}
+      \item \textbf{Priority Order:} 1) Pedestrian safety $\rightarrow$ 2) Passenger safety $\rightarrow$ 3) Property protection.
+      \item The system should avoid making real-time moral decisions and follow predefined safety rules.
+      \item \textbf{Ethical Requirement:} The system shall prioritize pedestrian safety over vehicle occupants and property damage in unavoidable collision scenarios.
+  \end{itemize}
+  
+  \vspace{0.5em}
+  \textbf{Discussion: Auditability (\#18)}
+  
+  \begin{itemize}
+      \item \textbf{Lisa}: "If there’s a crash, how do we prove whether the system or the driver was at fault?"
+      \item \textbf{Ahmed}: "An event recorder is essential. We need logs of what the AI saw, what it did, and why."
+      \item \textbf{Robert}: "But how long should those records be kept? I don’t want my car tracking me forever."
+      \item \textbf{Mia}: "And who gets access? Insurance companies? Law enforcement?"
+      \item \textbf{David}: "Users should own their data but allow access when necessary, like for legal investigations."
+  \end{itemize}
+  
+  \textbf{Test:} Each persona states a scenario where event logs would be useful and a scenario where logs could be misused. The team debates safeguards.
+  
+  \textbf{Revised Conclusion:}
+  \begin{itemize}
+      \item Short-term storage (e.g., 30 days, then deletion unless an incident occurs).
+      \item User-controlled access unless required for investigations.
+      \item \textbf{Ethical Requirement:} The system shall maintain a temporary event log accessible to users and regulatory authorities for legal and diagnostic purposes.
+  \end{itemize}
+  
+  \vspace{0.5em}
+  \textbf{Discussion: Minimizing Negative Impacts (\#20)}
+  
+  \begin{itemize}
+      \item \textbf{Emily}: "How do we ensure the system doesn’t cause new risks while solving old ones?"
+      \item \textbf{Lisa}: "False positives in object detection could lead to unsafe sudden braking."
+      \item \textbf{Ahmed}: "And over-reliance on automation could make drivers less attentive."
+      \item \textbf{Robert}: "The system should alert drivers to stay engaged, even when it’s active."
+      \item \textbf{David}: "What about vulnerable groups? Will it recognize wheelchairs, strollers, or guide dogs?"
+  \end{itemize}
+  
+  \textbf{Test:} Each persona suggests a potential unintended consequence of object recognition. Solutions are proposed and debated.
+  
+  \textbf{Revised Conclusion:}
+  \begin{itemize}
+      \item The system must include adaptive learning to reduce false positives.
+      \item Drivers should receive regular engagement prompts to prevent over-reliance.
+      \item \textbf{Ethical Requirement:} The system shall include periodic driver awareness alerts and prioritize recognition of vulnerable road users, including individuals with disabilities.
+  \end{itemize}
+  
+  \vspace{1em}
+  \textbf{Final Ethical Requirements for Sprint 3}
+  \begin{itemize}
+      \item The system shall categorize objects with confidence levels and trigger appropriate responses based on risk level.
+      \item The system shall prioritize pedestrian safety over vehicle occupants and property damage in unavoidable collision scenarios.
+      \item The system shall maintain a temporary event log accessible to users and regulatory authorities for legal and diagnostic purposes.
+      \item The system shall include periodic driver awareness alerts and prioritize recognition of vulnerable road users, including individuals with disabilities.
+  \end{itemize}
+  
+  \vspace{0.5em}
+  \begin{itemize}
+      \item \textbf{Robert}: "This sprint was tough. Balancing safety and practicality is no joke."
+      \item \textbf{Lisa}: "But these debates are crucial. We’re making real progress!"
+      \item \textbf{Emily}: "On to the next challenge—traffic sign and light recognition."
+  \end{itemize}
+  \end {tcolorbox}
+  
+Both exploratory studies were made in March of 2025 using chatGPT model 4o.
+
+\section{Discussion}
+It is important to note that ChatGPT was developed using a wide variety of datasets, including technical and scientific literature, which means it might have prior knowledge of several requirements elicitation methods, including ObRE. Even though our prompts concentrated on the ECCOLA method, knowledge of ObRE and other techniques may have already existed within the model. This overlap may have unintentionally biased the ethical requirement responses generated from different approach comparisons.
+
+On the other hand, our methodology was only applied to one particular case, the AutoCar project. Although this selection facilitates straightforward alignment with existing literature, it poses questions about the broader relevance of our findings. To robustly evaluate the effectiveness, versatility, and extensiveness of our method, testing a wider scope of projects and domains is essential.
+
+The use of the ChatGPT browser application for executing the exploratory studys introduces another limitation. While this configuration is user-friendly and straightforward, it does not offer the level of control and automation that comes with a purpose-built software environment. Human-operated steps, such as control prompt initiation or result interpretation, increase variability and compromise the reproducibility of the exploratory study.
+
+Despite these limitations, our findings demonstrate potential for improvement and refinement through a structured system rather than a browser application. This system would implement our approach and follow each step iteratively to fine-tune the requirements. This system could include real-time persona discussions, stakeholder feedback, and quality assurance mechanisms to support requirements engineers more effectively. 
+
+In the Exploratory Studies Prompts and Responses\footnote{Exploratory Studies Prompts and Responses: https://anonymous.4open.science/r/Ethical-Requirements-A75E/README.md}, the full set of prompts and responses for each Exploratory study is documented for reproducibility and further analysis.
