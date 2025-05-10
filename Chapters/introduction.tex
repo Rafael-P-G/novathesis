@@ -1,0 +1,61 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter1.tex
+%% NOVA thesis document file
+%%
+%% Chapter with introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\typeout{NT FILE introduction.tex}%
+
+\chapter{Introduction}
+\label{cha:introduction}
+
+\prependtographicspath{{Chapters/Figures/Covers/}}
+
+% epigraph configuration
+\epigraphfontsize{\small\itshape}
+\setlength\epigraphwidth{12.5cm}
+\setlength\epigraphrule{0pt}
+
+
+\section{Context and Motivation}
+With the rapid advancements in technology, there is an increasing need to integrate ethical standards into software products \cite{gogoll2021ethics}. Numerous controversial cases have emerged 
+regarding ethics in the tech industry, particularly concerning the collection of personal data without consent — for example, South Korea’s privacy watchdog recently fined Meta \$15 million for 
+unlawfully collecting sensitive personal data\cite{ReutersMeta2024}, and investigations in Australia have revealed that personal information is being shared repeatedly via ad‐tracking systems without user consent\cite{AussiesData2024}. 
+
+Currently, the emphasis on ethical requirements is primarily directed at Artificial Intelligence (AI) systems, as the decisions made by these systems can significantly impact society; recent international efforts - including
+a legally binding treaty between the US, UK, and EU on AI standards - underscore this focus \cite{TETAIStandards2024}. However, there is still a lack of research on how to effectively incorporate 
+ethical requirements into software products in general, with most studies focusing on ethics for AI systems than the broader software development process \cite{zuber2022empowered}.
+
+Recent advancements in large language models (LLMs) for reading and interpreting human text \cite{lu2023emergent} present an opportunity to more effectively extract stakeholder needs. 
+We intend to leverage these models to improve the extraction of ethical requirements from stakeholders' textual data.
+
+\section{Problem Description}
+The lack of an efficient approach to identifying ethical requirements for software products presents a significant challenge. The rapid advancement of technology has led to a wide range of 
+ethical issues that must be considered when designing software \cite{gogoll2021ethics}. 
+
+Ethical requirements are often implicit or abstract, making them difficult to identify and clearly define \cite{biableethics2022}. Furthermore, there is often a communication barrier between 
+stakeholders—their understanding of ethical issues may vary due to differences in background, culture, and personal beliefs—and the developer teams responsible for translating these concerns into 
+software requirements \cite{biableethics2022}.
+Additionally, different stakeholders may hold varying perspectives, resulting in conflicting priorities. Finally, converting abstract ethical principles into specific, testable 
+system requirements is complex and resource-intensive, often straining project timelines and available resources \cite{gogoll2021ethics}.
+
+\section{Objectives}
+Our objective is to develop a software tool that receives textual data from stakeholders, including detailed representations of their software product concepts. This tool will extract ethical 
+requirements and generate a comprehensive specification of Ethical User Stories that effectively address these requirements.
+
+The software will leverage large language models (LLMs) to analyze and interpret the input provided by stakeholders. Additionally, it will simulate human behavior, allowing for a deeper insight
+into potential ethical dilemmas and social implication associated with the project. This will empower teams to develop software products that align with ethical standards and social expectations.
+
+
+
+\section{Document Structure}
+This section outlines the structure of the remaining chapters in this thesis.
+
+\begin{enumerate}
+    \item \textbf{Chapter 2} provides an overview of essential concepts and technologies pertinent to the study, including requirements engineering, large language models, and ethics.
+    \item \textbf{Chapter 3} presents the state of the art reasearch conducted to identify and evaluate existing approaches to gathering requirements and their limitations.
+    \item \textbf{Chapter 4} discusses the exprected contributions of this thesis and our proposed tool.
+\end{enumerate}
+
